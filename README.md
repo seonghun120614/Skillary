@@ -746,7 +746,7 @@ NEXT_PUBLIC_FRONT_API_URL=http://localhost:8080/api
 
 ## ⚖️ License
 
-Copyright 2024. **Skillary Team** all rights reserved.
+Copyright 2025. **Skillary Team** all rights reserved.
 
 본 프로젝트의 모든 코드, 디자인, 문서에 대한 저작권은 **Skillary 팀**에 있으며, 다음과 같은 사항을 엄격히 금지합니다:
 - **무단 도용 및 복제**: 본 프로젝트의 소스 코드나 결과물을 무단으로 복사하여 사용하는 행위
