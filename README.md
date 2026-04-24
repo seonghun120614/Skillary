@@ -26,6 +26,11 @@
 * **개발 기간**: 2025.01.08 ~ 2025.01.21
 * **핵심 가치**: 누구나 자신의 전뭉성과 콘텐츠를 수익화할 수 있는 플랫폼을 제공한다.
 
+```bash
+# 빠른 실행, .env.db, .env.front, .env.back 를 프로젝트 디렉토리 최상단에 생성시켜서 실행해주세요
+docker compose up --build && docker compose down -v
+```
+
 ---
 ## 🛠 기술 스택
 
@@ -45,7 +50,7 @@
 ### Infrastructure & DevOps
 
 * **Server**: AWS EC2
-* **Container**: Docker, Docker Compose
+* **Container**: Docker
 * **CI/CD**: GitHub Actions
 * **Proxy**: Nginx
 
@@ -54,7 +59,7 @@
 * **Conference**: Notion
 * **Live Coding**: Discord
 * **Diagram Editor**: Miro
-* **Presentation**: Canva
+* **Presentation**: Miri Canva
 
 ---
 
@@ -63,9 +68,9 @@
 * **사용자 인증**: JWT 기반 인증 및 Refresh Token으로 세션 유지 및 보안 강화
 * **결제 시스템**: 구독 및 유료 콘텐츠 결제 관련 Toss Payments 연동
 * **다중 프로필**: 크리에이터, 유저 간의 전환
-* **정산 시스템**: 매일 들어온 수익 및 매달 10일 정산이 완료
+* **정산 시스템**: 매일 들어온 수익 및 매달 특정일에 정산이 완료
 * **파일 업로드**: AWS S3를 이용한 프로필 및 콘텐츠 이미지, 영상 관리
-* **게시판 기능**: 댓글 및 포스팅
+* **게시판 기능**: 댓글/좋아요, 포스팅
 * **기타**: 관리자 페이지, 검색 기능 등
 
 ---
@@ -660,17 +665,16 @@ cd spring-skillary-back && docker compose -f docker-compose.dev.yml up --build -
 
 이 프로젝트는 빌드 시점에 환경변수 주입이 필요합니다.
 
-#### Spring
+#### Spring Config Template
 
 ```bash
-### spring-skillary-back/.env.dev
-# Spring 데이터베이스 설정
-SPRING_DATASOURCE_URL=
+# .env.back
+SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/skillarydb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8&connectionCollation=utf8mb4_unicode_ci&useUnicode=true
 SPRING_DATASOURCE_USERNAME=
 SPRING_DATASOURCE_PASSWORD=
-SPRING_DATASOURCE_DRIVER_CLASS_NAME=
+SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
 
-CORS_ALLOWED_ORIGINS=http://localhost:3000
+CORS_ALLOWED_ORIGINS=http://localhost:3000,http://localhost
 
 SPRING_JPA_HIBERNATE_DDL_AUTO=create
 SPRING_JPA_SHOW_SQL=true
@@ -679,41 +683,37 @@ SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
 
 SPRING_PROFILES_ACTIVE=dev
 
-# Toss Payments 설정
 TOSS_PAYMENTS_SECRET_KEY=
 TOSS_PAYMENTS_CLIENT_KEY=
 
-# 이메일 설정
 SPRING_MAIL_HOST=
 SPRING_MAIL_PORT=
 SPRING_MAIL_USERNAME=
 SPRING_MAIL_PASSWORD=
 
-# 이메일 템플릿 설정
-APP_MAIL_FROM=
-APP_MAIL_SUBJECT=
+APP_MAIL_FROM=noreply@skillary.com
+APP_MAIL_SUBJECT=Skillary 이메일 인증 코드
 APP_MAIL_CODE_EXPIRY_MINUTES=300
 
-# Jwt Token 설정
-JWT_SECRET_KEY=
-JWT_EXPIRE_TIME_ACCESS=
-JWT_EXPIRE_TIME_REFRESH=
+JWT_SECRET_KEY=this-is-very-secret-key-for-jwt-signing-please-change-it
+JWT_EXPIRE_TIME_ACCESS=180000
+JWT_EXPIRE_TIME_REFRESH=604800
 
-# AWS S3 설정
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_S3_BUCKET_NAME=
 AWS_S3_REGION=
 ```
 
-#### Database
+#### Database Config Template
 
 ```bash
-### spring-skillary-back/.env.db
+# .env.db
 MYSQL_USER=
 MYSQL_PASSWORD=
 MYSQL_DATABASE=
 MYSQL_ROOT_PASSWORD=
+TZ=
 
 # 필요시 추가
 MYSQL_QUERY_CACHE_SIZE=
@@ -722,10 +722,10 @@ MYSQL_INNODB_BUFFER_POOL_SIZE=
 MYSQL_MAX_CONNECTIONS=
 ```
 
-#### Next
+#### Next Config Template
 
 ```bash
-## next-skillary-front/.env.dev
+# .env.front
 NEXT_PUBLIC_FRONT_API_URL=http://localhost:8080/api
 ```
 

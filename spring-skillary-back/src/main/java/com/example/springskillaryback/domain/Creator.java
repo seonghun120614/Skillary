@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,6 +20,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+
+import static jakarta.persistence.EnumType.STRING;
 
 @Table(name = "creators")
 @Entity
@@ -53,6 +55,7 @@ public class Creator {
 
     @Setter
     @Column(length = 20, nullable = false)
+	@Enumerated(STRING)
     private CategoryEnum category;
 
     @Builder.Default

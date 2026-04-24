@@ -3,12 +3,12 @@ package com.example.springskillaryback.domain;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -22,10 +22,10 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
+
+import static jakarta.persistence.EnumType.STRING;
 
 @Table(name = "contents")
 @Builder
@@ -46,6 +46,7 @@ public class Content {
     private String description;
 
 	@Column(length = 20, nullable = false)
+	@Enumerated(STRING)
 	private CategoryEnum category;
 
 	@CreationTimestamp
@@ -73,7 +74,7 @@ public class Content {
 	@Column(nullable = true)
 	private Integer price; // price plan 동시 x <- 서비스단 검증
 
-	@OneToOne(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private Post post;
 
 	@ManyToOne(fetch = FetchType.LAZY)

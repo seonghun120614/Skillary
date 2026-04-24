@@ -3,6 +3,7 @@ package com.example.springskillaryback.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -61,14 +62,15 @@ public class Order {
 	@Column(nullable = false)
 	private LocalDateTime expiredAt;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
 	private User user;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "plan_id")
 	private SubscriptionPlan subscriptionPlan;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.SET_NULL) // 스케줄러 유료콘텐츠 삭제시 필요
     @JoinColumn(name = "content_id")
 	private Content content;

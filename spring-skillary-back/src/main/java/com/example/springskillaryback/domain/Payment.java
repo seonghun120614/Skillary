@@ -41,7 +41,7 @@ public class Payment {
 	private int credit;
 
 	@JoinTable(name = "order_id")
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	private Order order;
 
 	@Enumerated(STRING)
@@ -58,7 +58,7 @@ public class Payment {
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
