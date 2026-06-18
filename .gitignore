@@ -1,4 +1,5 @@
 # OS 관련
+.idea
 .DS_Store           # macOS
 */.DS_Store
 Thumbs.db           # Windows
