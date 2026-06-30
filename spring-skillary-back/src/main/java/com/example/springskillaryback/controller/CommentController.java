@@ -2,7 +2,6 @@ package com.example.springskillaryback.controller;
 
 import com.example.springskillaryback.common.dto.CommentRequestDto;
 import com.example.springskillaryback.common.dto.CommentResponseDto;
-import com.example.springskillaryback.common.util.TokenUtil;
 import com.example.springskillaryback.service.CommentService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

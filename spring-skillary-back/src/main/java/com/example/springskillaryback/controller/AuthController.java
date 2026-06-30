@@ -5,7 +5,6 @@ import com.example.springskillaryback.common.dto.EmailVerificationConfirmRequest
 import com.example.springskillaryback.common.dto.EmailVerificationRequest;
 import com.example.springskillaryback.common.dto.LoginRequest;
 import com.example.springskillaryback.common.dto.RegisterRequest;
-import com.example.springskillaryback.common.util.CookieUtil;
 import com.example.springskillaryback.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

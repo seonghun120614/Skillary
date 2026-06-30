@@ -1,6 +1,5 @@
 package com.example.springskillaryback.service.impl;
 
-import com.example.springskillaryback.common.util.JwtTokenizer;
 import com.example.springskillaryback.domain.*;
 import com.example.springskillaryback.repository.RefreshTokenRepository;
 import com.example.springskillaryback.repository.RoleRepository;
@@ -10,7 +9,6 @@ import com.example.springskillaryback.service.AuthService;
 import com.example.springskillaryback.service.EmailVerificationService;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
